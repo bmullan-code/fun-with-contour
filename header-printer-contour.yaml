@@ -1,0 +1,67 @@
+
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: header-printer-toplevel
+  namespace: default
+spec:
+  virtualhost:
+    fqdn: contour.vinalhaven.info
+  includes:
+  - name: proxy-team1
+    namespace: team1
+    conditions:
+    - prefix: /team1
+  - name: proxy-team2
+    namespace: team2
+    conditions:
+    - prefix: /team2
+  - name: proxy-team3
+    namespace: team3
+    conditions:
+    - prefix: /team3
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: proxy-team1
+  namespace: team1
+spec:
+  routes:
+    - services:
+        - name: header-printer-team1
+          port: 8098
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: proxy-team2
+  namespace: team2
+spec:
+  routes:
+    - services:
+        - name: header-printer-team2
+          port: 8098
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: proxy-team3
+  namespace: team3
+spec:
+  routes:
+    - services:
+        - name: header-printer-team3
+          port: 8098
+
+# ---
+# apiVersion: projectcontour.io/v1
+# kind: HTTPProxy
+# metadata:
+#   name: team2
+#   namespace: team2
+# spec:
+#   routes:
+#     - services:
+#         - name: kuard
+#           port: 80

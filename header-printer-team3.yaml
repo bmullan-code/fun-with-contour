@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: team3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: header-printer-team3
+  namespace: team3
+  labels:
+    app: header-printer-team3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: header-printer-team3
+  template:
+    metadata:
+      labels:
+        app: header-printer-team3
+    spec:
+      containers:
+      - name: header-printer-team3
+        image: harbor.vinalhaven.info/library/header-printer-team3:latest
+        ports:
+        - containerPort: 8098
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: header-printer-team3
+  namespace: team3
+spec:
+  selector:
+    app: header-printer-team3
+  ports:
+    - protocol: TCP
+      port: 8098
+      targetPort: 8098
