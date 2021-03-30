@@ -34,5 +34,16 @@ Name:	contour.vinalhaven.info
 Address: 192.168.2.7
 ```
 
+Apply the sample application, and contour httproxy objects
+```
+kubectl apply -f ./kuard.yaml
+```
+
+Access the application at 
+```
+http://contour.vinalhaven.info
+```
+
+
 
 
