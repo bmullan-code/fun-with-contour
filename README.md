@@ -44,6 +44,6 @@ Access the application at
 http://contour.vinalhaven.info
 ```
 
-![](https://raw.githubusercontent.com/bmullan-pivotal/fun-with-contour/6c3cd9056cf29e3827745878b36b6d9dde2c580b/screenshot.png | width = 100)
+![](https://raw.githubusercontent.com/bmullan-pivotal/fun-with-contour/6c3cd9056cf29e3827745878b36b6d9dde2c580b/screenshot.png)
 
 
